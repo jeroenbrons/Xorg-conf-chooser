@@ -16,8 +16,11 @@ Usage
 =================
 
 
-Using Your Customized Commands Script
+Start the menu using your own modified version 
+of this customized commands script like so:
+
 cd <the directory where your menu file lives>
+
 ./moo_menu.sh
 
 =================

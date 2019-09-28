@@ -6,7 +6,7 @@ A simple bash script that will generate menus.
 Examples
 =================
 
-![alt Bash Menu Options Moo Menu Example](https://raw.githubusercontent.com/JamieCruwys/bash-menu-generator/master/images/moo_menu_screenshot.png)
+![alt Bash Menu Options Moo Menu Example](https://raw.githubusercontent.com/zigmoo/bash-menu-generator/master/images/moo_menu_screenshot.png)
 
 ![alt Bash Menu Options Basic Example](https://raw.githubusercontent.com/JamieCruwys/bash-menu-generator/master/images/Bash%20Menu%20Options.png)
 

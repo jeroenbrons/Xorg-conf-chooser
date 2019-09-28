@@ -17,18 +17,17 @@ Usage
 
 
 Quick Start:
+=================
 -----------------
-Start the menu using your own modified version
-of this customized commands script like so:
+Start the menu using your own customized version
+of this command script like so:
 
 `cd <the directory where your menu file lives>`
 
 `./moo_menu.sh`
 
 
-=================
-
-generateDialog
+Internal Function: generateDialog()
 -----------------
 **Parameter 1:** "options" to use **[1]** or "instructions" for **1.**  
 **Parameter 2:** Title for the menu  

@@ -10,97 +10,96 @@
 #
 
 # Configuration
-symbol="*"
-paddingSymbol=" "
-lineLength=70
-charsToOption=1
-charsToName=3
+SYMBOL="*"
+PADDING_SYMBOL=" "
+LINE_LENGTH=70
+CHARS_TO_OPTION=1
+CHARS_TO_NAME=3
 MENU_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-napoleon_quotes="${MENU_DIR}"/"napoleon.txt"
+NAPOLEON_QUOTES="${MENU_DIR}"/"napoleon.txt"
 
 function generateNapoleonQuote() {
-    low=1;
-    high=$(cat $napoleon_quotes|wc -l);
-    random_quote_row=$((low + RANDOM % (1 + high - low)))
+    LOW=1;
+    HIGH=$(cat $NAPOLEON_QUOTES|wc -l);
+    RANDOM_QUOTE_ROW=$((LOW + RANDOM % (1 + HIGH - LOW)))
     echo ""
     echo "Napoleon Dynamite:"
-    quote=$( sed -n ${random_quote_row}p $napoleon_quotes )
+    quote=$( sed -n ${RANDOM_QUOTE_ROW}p $NAPOLEON_QUOTES )
     echo "    $quote"
     echo ""
 }
 
 function generatePadding() {
 
-    string="";
+    STRING="";
 
     for (( i=0; i < $2; i++ )); do
-        string+="$1";
+        STRING+="$1";
     done
-    echo "$string";
+    echo "$STRING";
 
 }
   
 # Generated configs
-remainingLength=$(( $lineLength - 2 ));
-line=$(generatePadding "${symbol}" "${lineLength}");
-toOptionPadding=$(generatePadding "${paddingSymbol}" "${charsToOption}");
-toNamePadding=$(generatePadding "$paddingSymbol" "$charsToName");
+REMAINING_LENGTH=$(( $LINE_LENGTH - 2 ));
+MENU_LINE=$(generatePadding "${SYMBOL}" "${LINE_LENGTH}");
+TO_OPTIONS_PADDING=$(generatePadding "${PADDING_SYMBOL}" "${CHARS_TO_OPTION}");
+TO_NAME_PADDING=$(generatePadding "$PADDING_SYMBOL" "$CHARS_TO_NAME");
   
 # generateText (text)
 function generateText() {
 
-    totalCharsToPad=$((remainingLength - ${#1}));
-    charsToPadEachSide=$((totalCharsToPad / 2));
-    padding=$(generatePadding "$paddingSymbol" "$charsToPadEachSide");
-    totalChars=$(( ${#symbol} + ${#padding} + ${#1} + ${#padding} + ${#symbol} ));
+    TOTAL_CHARS_TO_PAD=$((REMAINING_LENGTH - ${#1}));
+    CHARS_TO_PAD_EACH_SIDE=$((TOTAL_CHARS_TO_PAD / 2));
+    PADDING=$(generatePadding "$PADDING_SYMBOL" "$CHARS_TO_PAD_EACH_SIDE");
+    totalChars=$(( ${#SYMBOL} + ${#PADDING} + ${#1} + ${#PADDING} + ${#SYMBOL} ));
 
-    if [[ ${totalChars} < ${lineLength} ]]; then
-        echo "${symbol}${padding}${1}${padding}${paddingSymbol}${symbol}";
+    if [[ ${totalChars} < ${LINE_LENGTH} ]]; then
+        echo "${SYMBOL}${PADDING}${1}${PADDING}${PADDING_SYMBOL}${SYMBOL}";
     else
-        echo "${symbol}${padding}${1}${padding}${symbol}";
+        echo "${SYMBOL}${PADDING}${1}${PADDING}${SYMBOL}";
     fi
 }
   
 # generateTitle (title)
 function generateTitle() {
 
-    echo "$line"
+    echo "$MENU_LINE"
     generateText ""
     generateText "$1"
     generateText ""
-    echo "$line"
+    echo "$MENU_LINE"
 
 }
   
 # generateOption (dialogType, optionNumber, optionName)
 function generateOption() {
 
-    tempOptionPadding=$toOptionPadding
-    tempNamePadding=$toNamePadding
+    TEMP_OPTIONS_PADDING=$TO_OPTIONS_PADDING
+    TEMP_NAME_PADDING=$TO_NAME_PADDING
 
     if [[ $1 == "options" ]]; then
 
         if [[ $3 == "Exit" ]] || [[ $3 == "Return to the main menu" ]]; then
-            optionString="[0]"
+            OPTION_STRING="[0]"
         else
-            optionString="[$2]"
+            OPTION_STRING="[$2]"
         fi
     
     elif [[ $1 == "instructions" ]]; then
-        optionString="$2."
+        OPTION_STRING="$2."
     fi
 
-    charsToPadName=$(( ${lineLength} - ${#symbol} - ${#tempOptionPadding} - ${#optionString} - ${#tempNamePadding} - ${#3} - ${#symbol} ));
-    namePadding=$(generatePadding "$paddingSymbol" "$charsToPadName");
+    CHARS_TO_PAD_NAME=$(( ${LINE_LENGTH} - ${#SYMBOL} - ${#TEMP_OPTIONS_PADDING} - ${#OPTION_STRING} - ${#TEMP_NAME_PADDING} - ${#3} - ${#SYMBOL} ));
+    NAME_PADDING=$(generatePadding "$PADDING_SYMBOL" "$CHARS_TO_PAD_NAME");
 
-    echo "${symbol}${tempOptionPadding}${optionString}${tempNamePadding}${3}${namePadding}${symbol}";
+    echo "${SYMBOL}${TEMP_OPTIONS_PADDING}${OPTION_STRING}${TEMP_NAME_PADDING}${3}${NAME_PADDING}${SYMBOL}";
 }
   
 # generateOptionsFromArray (dialogType, array[options])
 function generateOptionsFromArray() {
 
-    index=1
+    INDEX=1
     generateText ""
 
     for OPTION in "${@:2}"
@@ -109,9 +108,9 @@ function generateOptionsFromArray() {
             if [[ "$1" == "message" ]]; then
                 generateText "$OPTION"
             else
-                generateOption "$1" "$index" "$OPTION"
+                generateOption "$1" "$INDEX" "$OPTION"
             fi
-            ((index++))
+            ((INDEX++))
         done
 
     generateText ""
@@ -121,22 +120,22 @@ function generateOptionsFromArray() {
 function generateDialog() {
     generateTitle "$2"
     generateOptionsFromArray "$1" "${@:3}"
-    echo "$line";
+    echo "$MENU_LINE";
 }
   
 # generateGoBackDialog (name, isNewLine)
 function generateGoBackDialog() {
 
     if [[ $2 == "true" ]]; then
-        echo -e "\n$line"
+        echo -e "\n$MENU_LINE"
     else
-        echo -e "$line"
+        echo -e "$MENU_LINE"
     fi
 
     generateText ""
     generateOption "options" "0" "$1"
     generateText ""
-    echo -e "$line"
+    echo -e "$MENU_LINE"
 }
   
 # generateMessageDialog (title, array[message])
@@ -147,6 +146,6 @@ function generateMessageDialog() {
     fi
 
     generateOptionsFromArray "message" "${@:2}"
-    echo "$line"
+    echo "$MENU_LINE"
 
 }

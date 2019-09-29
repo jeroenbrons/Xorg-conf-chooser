@@ -23,7 +23,7 @@ function generateNapoleonQuote() {
     HIGH=$(cat $NAPOLEON_QUOTES|wc -l);
     RANDOM_QUOTE_ROW=$((LOW + RANDOM % (1 + HIGH - LOW)))
     echo ""
-    echo "Napoleon Dynamite:"
+    echo "Farewell from Napoleon Dynamite:"
     quote=$( sed -n ${RANDOM_QUOTE_ROW}p $NAPOLEON_QUOTES )
     echo "    $quote"
     echo ""

@@ -19,12 +19,14 @@ Usage
 Quick Start:
 =================
 -----------------
-Start the menu using your customized version
-of this command script like so:
+Start the menu using quickly by executing
+of the command script like so:
 
 `cd <the directory where your menu.sh, moo_menu.sh, and napoleon.txt files live>`
 
 `./moo_menu.sh`
+
+When ready, customize moo_menu.sh (and even rename it) for your own purposes!
 
 
 Internal Function: generateDialog()

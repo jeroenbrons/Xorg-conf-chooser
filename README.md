@@ -19,10 +19,10 @@ Usage
 Quick Start:
 =================
 -----------------
-Start the menu using your own customized version
+Start the menu using your customized version
 of this command script like so:
 
-`cd <the directory where your menu file lives>`
+`cd <the directory where your menu.sh, moo_menu.sh, and napoleon.txt files live>`
 
 `./moo_menu.sh`
 
@@ -37,8 +37,7 @@ Internal Function: generateDialog()
 
 
 Configuration
-=================
-
+-----------------
 - **symbol** - Which character to be used to create the menu
 - **paddingSymbol** - Character to space and center the text
 - **lineLength** - How wide the menu should be

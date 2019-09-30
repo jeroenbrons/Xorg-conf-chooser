@@ -8,31 +8,46 @@ Examples
 
 ![alt Bash Menu Options Moo Menu Example](https://raw.githubusercontent.com/zigmoo/bash-menu-generator/master/images/moo_menu_screenshot.png)
 
-![alt Bash Menu Options Basic Example](https://raw.githubusercontent.com/JamieCruwys/bash-menu-generator/master/images/Bash%20Menu%20Options.png)
-
-![alt Bash Menu Instructions Example](https://raw.githubusercontent.com/JamieCruwys/bash-menu-generator/master/images/Bash%20Menu%20Instructions.png)
 
 Usage
 =================
 
 
-Quick Start:
+Advanced Quick Start Launcher (moo_menu.sh):
 =================
 -----------------
 Launch the menu quickly by executing the launch command script like so:
 
-`cd <the directory where your menu.sh, moo_menu.sh, and quotes.txt files live>`
+```cd <the directory where your menu.sh, moo_menu.sh, and quotes.txt files live>```
 
-`./moo_menu.sh`
+```./moo_menu.sh```
 
 When ready, customize moo_menu.sh (and even rename it) for your own purposes!
 The quotes.txt file is optional. Customize it to your liking, or just remove it.
 
-Write your own moo_menu.sh scratch:
+Write your own Launcher from scratch:
 =================
 
+Super-Basic Example Launcher:
 ------
+example.sh:
+------
+```#!/bin/bash
+source menu.sh
 
+# Generates dialog with options
+declare -a options=("Enable WiFi" "Disable flux capacitor" "Check repository status" "Walk the dog");
+generateDialog "options" "Choose an option" "${options[@]}"
+
+read choice
+# Do something after getting their choice
+
+clear
+
+# Generates a dialog with ordered instructions
+declare -a instructions=("Turn on the computer" "Check WiFi is enabled" "Go to GitHub" "Star cool repositories");
+generateDialog "instructions" "GitHub Instructions" "${instructions[@]}"
+```
 Internal Function: generateDialog()
 -----------------
 **Parameter 1:** "options" to use **[1]** or "instructions" for **1.**  
@@ -49,4 +64,3 @@ Configuration
 - **LINE_LENGTH** - How wide the menu should be
 - **CHARS_TO_OPTION** - How much padding you want from the sides of the menu
 - **CHARS_TO_NAME** - How much padding you want around the text
-- 

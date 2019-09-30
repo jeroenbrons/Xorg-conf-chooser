@@ -19,15 +19,19 @@ Usage
 Quick Start:
 =================
 -----------------
-Start the menu using quickly by executing
-of the command script like so:
+Launch the menu quickly by executing the launch command script like so:
 
-`cd <the directory where your menu.sh, moo_menu.sh, and napoleon.txt files live>`
+`cd <the directory where your menu.sh, moo_menu.sh, and quotes.txt files live>`
 
 `./moo_menu.sh`
 
 When ready, customize moo_menu.sh (and even rename it) for your own purposes!
+The quotes.txt file is optional. Customize it to your liking, or just remove it.
 
+Write your own moo_menu.sh scratch:
+=================
+
+------
 
 Internal Function: generateDialog()
 -----------------
@@ -45,3 +49,4 @@ Configuration
 - **LINE_LENGTH** - How wide the menu should be
 - **CHARS_TO_OPTION** - How much padding you want from the sides of the menu
 - **CHARS_TO_NAME** - How much padding you want around the text
+- 

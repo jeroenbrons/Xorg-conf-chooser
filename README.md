@@ -32,7 +32,8 @@ Super-Basic Example Launcher:
 ------
 example.sh:
 ------
-```#!/bin/bash
+```
+#!/bin/bash
 source menu.sh
 
 # Generates dialog with options
